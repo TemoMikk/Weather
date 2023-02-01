@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Amindi</title>
+  </head>
+  <body>
+    <h1>ამინდი</h1>
+    <form>
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" />
+      <button type="button" id="submit">Get Weather</button>
+    </form>
+    <div id="weather"></div>
+    <script>
+      const submitBtn = document.getElementById('submit')
+      submitBtn.addEventListener('click', () => {
+        const city = document.getElementById('city').value
+        fetch(`/weather?city=${city}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const weather = document.getElementById('weather')
+            weather.innerHTML = `Temperature: ${data.temperature}°C`
+          })
+      })
+    </script>
+  </body>
+</html>
